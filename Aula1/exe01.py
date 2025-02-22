@@ -11,15 +11,17 @@ def obter_memoria_processo(N):
             return None, None
      
 # "main()"
+    
+def estado_processo(N):
+    try: 
+         processo = psutil.Process(N)
+         estado = processo.status
+         return estado  
+    except psutil.NoSuchProcess: 
+        return "Processo não encontrado"
 
-pid = 0
-Real, Virtual = obter_memoria_processo(0)
 
-if Real is not None:
 
-    print(f"PID: {pid}") 
-    print(f"memoria real: {Real}")
-    print(f"memoria virtual: {Virtual}")
-
-else:
-    print(f"o processo com PID {pid} nao existe")    
+pid = int(input("Digite o PID do processo: "))
+estado = estado_processo(pid)
+print(f"O estado do processo é: {estado}")
